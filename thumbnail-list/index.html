@@ -1,0 +1,73 @@
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://fb.me/react-0.13.3.js"></script>
+  <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+</head>
+</body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5 target">
+      </div>
+    </div>
+  </div>
+</body>
+<script type="text/jsx">
+// Define class
+var Badge = React.createClass({
+  render: function(){
+    return <button className="btn btn-primary" type="button">
+  {this.props.title} <span className="badge">{this.props.number}</span>
+</button>
+  }
+});
+
+var Thumbnail = React.createClass({
+    render: function(){
+      return <div className="thumbnail">
+        <img src={this.props.imageURL} />
+        <div class="caption">
+          <h3>{this.props.header}</h3>
+          <p>{this.props.description}</p>
+          <p>
+            <Badge title={this.props.title} number={this.props.number} />
+          </p>
+        </div>
+      </div>
+    }
+});
+
+var ThumbnailList = React.createClass({
+  render: function() {
+    var list = this.props.thumbnailData.map(function(thumbnailProps){
+        return <Thumbnail {...thumbnailProps} />
+    });
+
+    return <div>
+      {list}
+    </div>
+  }
+});
+
+var options = {
+  thumbnailData: [{
+    title: 'See Tutorials',
+    number: 32,
+    imageURL: 'http://facebook.github.io/react/img/logo.svg',
+    header: 'Learn React',
+    description: 'React is awesome!!! React is awesome!!! React is awesome!!! React is awesome!!!'
+    },{
+    title: 'See Tutorials',
+    number: 25,
+    imageURL: 'https://avatars0.githubusercontent.com/u/6200624?v=3&s=400',
+    header: 'Learn Gulp',
+    description: 'Gulp is awesome!!! Gulp is awesome!!! Gulp is awesome!!! React is awesome!!!'
+    }]
+  };
+
+//ask react to render class
+var element = React.createElement(ThumbnailList, options);
+
+//ask react to place it in body after rendering the class
+React.render(element, document.querySelector('.target'));
+
+</script>

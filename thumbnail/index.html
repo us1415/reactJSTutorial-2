@@ -1,0 +1,51 @@
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://fb.me/react-0.13.3.js"></script>
+  <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+</head>
+</body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5 target">
+      </div>
+    </div>
+  </div>
+</body>
+<script type="text/jsx">
+// Define class
+var Badge = React.createClass({
+  render: function(){
+    return <button className="btn btn-primary" type="button">
+  {this.props.title} <span className="badge">{this.props.number}</span>
+</button>
+  }
+});
+
+var Thumbnail = React.createClass({
+    render: function(){
+      return <div className="thumbnail">
+        <img src="..." alt="..." />
+        <div class="caption">
+          <h3>Thumbnail label</h3>
+          <p></p>
+          <p>
+            <a href="#" className="btn btn-primary" role="button">Button</a>
+            <a href="#" className="btn btn-default" role="button">Button</a>
+          </p>
+        </div>
+      </div>
+    }
+});
+
+var options = {
+  title: 'Inbox',
+  number: 32
+};
+
+//ask react to render class
+var element = React.createElement(Thumbnail, options);
+
+//ask react to place it in body after rendering the class
+React.render(element, document.querySelector('.target'));
+
+</script>
